@@ -43,7 +43,3 @@ class BookEditor:
             writer.writerow(column_names)
             writer.writerows(data)
 
-E = BookEditor("./db/20241128.db")
-
-
-E.export_to_csv("./data/d.csv")
