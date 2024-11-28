@@ -62,5 +62,3 @@ def setup_database(db_path):
     cursor.execute(create_loans_table)
     conn.commit()
     conn.close()
-
-setup_database("./db/20241128.db")
