@@ -6,6 +6,7 @@ def setup_database(db_path):
     create_books_table = """--sql
     CREATE TABLE IF NOT EXISTS books (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        barcode TEXT NOT NULL UNIQUE,
         isbn TEXT NOT NULL UNIQUE,
         title TEXT NOT NULL,
         author TEXT NOT NULL,
@@ -62,3 +63,4 @@ def setup_database(db_path):
     conn.commit()
     conn.close()
 
+setup_database("./db/20241128.db")
