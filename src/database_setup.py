@@ -29,6 +29,7 @@ def setup_database(db_path):
         user_id TEXT PRIMARY KEY NOT NULL,
         first_name TEXT NOT NULL,
         last_name TEXT NOT NULL,
+        national_id VARCHAR(11) NOT NULL UNIQUE,
         email TEXT NOT NULL UNIQUE,
         phone TEXT,
         address TEXT,
