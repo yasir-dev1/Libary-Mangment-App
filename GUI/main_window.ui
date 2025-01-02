@@ -6,151 +6,273 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>814</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Maximum">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="windowTitle">
-   <string>Library Management App</string>
+   <string>Modern Library Management</string>
+  </property>
+  <property name="styleSheet">
+   <string>
+    QMainWindow {
+      background-color: #f5f6fa;
+    }
+   </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_main" stretch="0,1">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+
+    <!-- Modern Drawer -->
     <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
+     <widget class="QWidget" name="drawerWidget">
+      <property name="minimumWidth">
+       <number>280</number>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
+      <property name="maximumWidth">
+       <number>280</number>
       </property>
-      <property name="usesScrollButtons">
-       <bool>true</bool>
+      <property name="styleSheet">
+       <string>
+        QWidget#drawerWidget {
+          background-color: #ffffff;
+          border-right: 1px solid #e0e0e0;
+        }
+        QLabel#logoLabel {
+          font-family: 'Segoe UI', Arial;
+          font-size: 22px;
+          font-weight: bold;
+          color: #2c3e50;
+          padding: 24px;
+        }
+        QPushButton {
+          font-family: 'Segoe UI', Arial;
+          text-align: left;
+          padding: 16px 24px;
+          border: none;
+          color: #5f6368;
+          background-color: transparent;
+          font-size: 15px;
+          border-radius: 0px;
+          margin: 4px 12px;
+          border-radius: 8px;
+        }
+        QPushButton:hover {
+          background-color: #f5f5f5;
+          color: #1a73e8;
+        }
+        QPushButton:checked {
+          background-color: #e8f0fe;
+          color: #1a73e8;
+          font-weight: bold;
+        }
+       </string>
       </property>
-      <property name="documentMode">
-       <bool>false</bool>
-      </property>
-      <property name="tabsClosable">
-       <bool>false</bool>
-      </property>
-      <property name="movable">
-       <bool>false</bool>
-      </property>
-      <property name="tabBarAutoHide">
-       <bool>false</bool>
-      </property>
-      <widget class="QWidget" name="BooksTab">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+      <layout class="QVBoxLayout" name="drawerLayout">
+       <property name="spacing">
+        <number>0</number>
        </property>
-       <attribute name="title">
-        <string>Books</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="logoLabel">
+         <property name="text">
+          <string>📚 Library App</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="booksButton">
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>📚  Books</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="usersButton">
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>👥  Users Management</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+
+    <!-- Content Area -->
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <!-- Books Page -->
+      <widget class="QWidget" name="booksPage">
+       <layout class="QVBoxLayout" name="booksLayout">
+        <property name="spacing">
+         <number>24</number>
+        </property>
+        <property name="margin">
+         <number>24</number>
+        </property>
         <item>
-         <widget class="QTableWidget" name="bookTable">
-          <property name="enabled">
-           <bool>true</bool>
+         <widget class="QLabel" name="booksHeaderLabel">
+          <property name="styleSheet">
+           <string>
+            QLabel {
+              font-family: 'Segoe UI', Arial;
+              font-size: 24px;
+              font-weight: bold;
+              color: #202124;
+            }
+           </string>
           </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+          <property name="text">
+           <string>Books Management</string>
           </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::CurrentChanged</set>
-          </property>
-          <property name="showGrid">
-           <bool>true</bool>
-          </property>
-          <property name="rowCount">
-           <number>0</number>
-          </property>
-          <property name="columnCount">
-           <number>13</number>
-          </property>
-          <column>
-           <property name="text">
-            <string>ID</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>ISBN</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Barcode</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Title</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Author</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Publisher</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Publication Year</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Category</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Total Copies</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Available Copies</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Language</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Description</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Location</string>
-           </property>
-          </column>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <widget class="QLineEdit" name="searchBooks">
+          <property name="minimumHeight">
+           <number>40</number>
+          </property>
+          <property name="styleSheet">
+           <string>
+            QLineEdit {
+              border: 1px solid #e0e0e0;
+              border-radius: 8px;
+              padding: 8px 16px;
+              background: white;
+              font-size: 14px;
+            }
+            QLineEdit:focus {
+              border: 2px solid #1a73e8;
+            }
+           </string>
+          </property>
+          <property name="placeholderText">
+           <string>Search books...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="bookTable">
+          <property name="styleSheet">
+           <string>
+            QTableWidget {
+              background-color: white;
+              border: 1px solid #e0e0e0;
+              border-radius: 8px;
+              gridline-color: #f0f0f0;
+            }
+            QHeaderView::section {
+              background-color: white;
+              padding: 12px;
+              border: none;
+              border-bottom: 1px solid #e0e0e0;
+              font-weight: bold;
+              color: #5f6368;
+            }
+            QTableWidget::item {
+              padding: 8px;
+              border-bottom: 1px solid #f0f0f0;
+            }
+            QTableWidget::item:selected {
+              background-color: #e8f0fe;
+              color: #1a73e8;
+            }
+           </string>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="bookButtonsLayout">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QPushButton" name="addButton">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>40</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string>margin: 10px; padding: 10px; font-size: 14px; background-color: #4CAF50; color: white; border-radius: 5px;</string>
+             <string>
+              QPushButton {
+                background-color: #1a73e8;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 24px;
+                font-size: 14px;
+                font-weight: bold;
+              }
+              QPushButton:hover {
+                background-color: #1557b0;
+              }
+              QPushButton:pressed {
+                background-color: #174ea6;
+              }
+             </string>
             </property>
             <property name="text">
              <string>Add Book</string>
@@ -159,8 +281,30 @@
           </item>
           <item>
            <widget class="QPushButton" name="deleteButton">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>40</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string>margin: 10px; padding: 10px; font-size: 14px; background-color: #f44336; color: white; border-radius: 5px;</string>
+             <string>
+              QPushButton {
+                background-color: white;
+                color: #d93025;
+                border: 1px solid #d93025;
+                border-radius: 8px;
+                padding: 8px 24px;
+                font-size: 14px;
+                font-weight: bold;
+              }
+              QPushButton:hover {
+                background-color: #fce8e6;
+              }
+              QPushButton:pressed {
+                background-color: #fcd8d3;
+              }
+             </string>
             </property>
             <property name="text">
              <string>Delete Book</string>
@@ -171,80 +315,131 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="UsersTab">
-       <attribute name="title">
-        <string>Users</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+
+      <!-- Users Page -->
+      <widget class="QWidget" name="usersPage">
+       <layout class="QVBoxLayout" name="usersLayout">
+        <property name="spacing">
+         <number>24</number>
+        </property>
+        <property name="margin">
+         <number>24</number>
+        </property>
         <item>
-         <widget class="QTableWidget" name="usersTable">
-          <property name="editTriggers">
-           <set>QAbstractItemView::DoubleClicked</set>
+         <widget class="QLabel" name="usersHeaderLabel">
+          <property name="styleSheet">
+           <string>
+            QLabel {
+              font-family: 'Segoe UI', Arial;
+              font-size: 24px;
+              font-weight: bold;
+              color: #202124;
+            }
+           </string>
           </property>
-          <property name="rowCount">
-           <number>0</number>
+          <property name="text">
+           <string>Users Management</string>
           </property>
-          <property name="columnCount">
-           <number>10</number>
-          </property>
-          <column>
-           <property name="text">
-            <string>User ID</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>First Name</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Last Name</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>National ID</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Email</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Phone</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Address</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Membership Start</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Membership Expiry</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Membership Type</string>
-           </property>
-          </column>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <widget class="QLineEdit" name="searchUsers">
+          <property name="minimumHeight">
+           <number>40</number>
+          </property>
+          <property name="styleSheet">
+           <string>
+            QLineEdit {
+              border: 1px solid #e0e0e0;
+              border-radius: 8px;
+              padding: 8px 16px;
+              background: white;
+              font-size: 14px;
+            }
+            QLineEdit:focus {
+              border: 2px solid #1a73e8;
+            }
+           </string>
+          </property>
+          <property name="placeholderText">
+           <string>Search users...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="usersTable">
+          <property name="styleSheet">
+           <string>
+            QTableWidget {
+              background-color: white;
+              border: 1px solid #e0e0e0;
+              border-radius: 8px;
+              gridline-color: #f0f0f0;
+            }
+            QHeaderView::section {
+              background-color: white;
+              padding: 12px;
+              border: none;
+              border-bottom: 1px solid #e0e0e0;
+              font-weight: bold;
+              color: #5f6368;
+            }
+            QTableWidget::item {
+              padding: 8px;
+              border-bottom: 1px solid #f0f0f0;
+            }
+            QTableWidget::item:selected {
+              background-color: #e8f0fe;
+              color: #1a73e8;
+            }
+           </string>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="userButtonsLayout">
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QPushButton" name="addUserButton">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>40</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string>margin: 10px; padding: 10px; font-size: 14px; background-color: #4CAF50; color: white; border-radius: 5px;</string>
+             <string>
+              QPushButton {
+                background-color: #1a73e8;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 24px;
+                font-size: 14px;
+                font-weight: bold;
+              }
+              QPushButton:hover {
+                background-color: #1557b0;
+              }
+              QPushButton:pressed {
+                background-color: #174ea6;
+              }
+             </string>
             </property>
             <property name="text">
              <string>Add User</string>
@@ -253,8 +448,30 @@
           </item>
           <item>
            <widget class="QPushButton" name="deleteUserButton">
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>40</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string>margin: 10px; padding: 10px; font-size: 14px; background-color: #f44336; color: white; border-radius: 5px;</string>
+             <string>
+              QPushButton {
+                background-color: white;
+                color: #d93025;
+                border: 1px solid #d93025;
+                border-radius: 8px;
+                padding: 8px 24px;
+                font-size: 14px;
+                font-weight: bold;
+              }
+              QPushButton:hover {
+                background-color: #fce8e6;
+              }
+              QPushButton:pressed {
+                background-color: #fcd8d3;
+              }
+             </string>
             </property>
             <property name="text">
              <string>Delete User</string>
@@ -269,17 +486,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionAdd_From_CSV">
-   <property name="text">
-    <string>Add From CSV</string>
-   </property>
-  </action>
-  <action name="actionExport_To_CSV">
-   <property name="text">
-    <string>Export To CSV</string>
-   </property>
-  </action>
  </widget>
  <resources/>
  <connections/>

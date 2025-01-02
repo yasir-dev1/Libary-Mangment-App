@@ -96,14 +96,11 @@ class LibraryManagementApp(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("./GUI/main_window.ui", self)
-
-
-                    
-        
-
         self.book_editor = BookEditor("db/libary.db")
         self.user_editor = UserEditor("db/libary.db")
 
+        self.booksButton.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
+        self.usersButton.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
         self.addButton.clicked.connect(self.handle_add_book)
         self.deleteButton.clicked.connect(self.handle_delete_book)
         self.addUserButton.clicked.connect(self.handle_add_user)
@@ -114,6 +111,44 @@ class LibraryManagementApp(QtWidgets.QMainWindow):
 
         self.load_books()
         self.load_users()
+
+
+
+        self.booksButton.clicked.connect(self.handle_books_click)
+        self.usersButton.clicked.connect(self.handle_users_click)
+        
+        # Mevcut seçili sayfa indeksini tut
+        self.current_index = 0
+        
+    def handle_books_click(self):
+        # Eğer zaten books sayfasındaysak sadece seçili durumu koru
+        if self.current_index == 0:
+            self.booksButton.setChecked(True)  # Seçili durumu zorla
+            return
+            
+        # Users butonunun seçili durumunu kaldır
+        self.usersButton.setChecked(False)
+        # Books butonunu seçili yap
+        self.booksButton.setChecked(True)
+        # Sayfayı değiştir
+        self.stackedWidget.setCurrentIndex(0)
+        # Mevcut indeksi güncelle
+        self.current_index = 0
+        
+    def handle_users_click(self):
+        # Eğer zaten users sayfasındaysak sadece seçili durumu koru
+        if self.current_index == 1:
+            self.usersButton.setChecked(True)  # Seçili durumu zorla
+            return
+            
+        # Books butonunun seçili durumunu kaldır
+        self.booksButton.setChecked(False)
+        # Users butonunu seçili yap
+        self.usersButton.setChecked(True)
+        # Sayfayı değiştir
+        self.stackedWidget.setCurrentIndex(1)
+        # Mevcut indeksi güncelle
+        self.current_index = 1
 
     def load_books(self):
         delegate = IntDelegate()
