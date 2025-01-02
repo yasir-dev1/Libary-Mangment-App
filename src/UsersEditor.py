@@ -28,11 +28,14 @@ class UserEditor:
         self.cursor.execute(query, (uid,))
         self.connection.commit()
     
-    def edit_user(self,id,column,new_value):
-        current_timestamp = datetime.now()
-        query = f"UPDATE users SET {column} = ?, updated_at = ? WHERE user_id = ?"
-        self.cursor.execute(query, (new_value,current_timestamp, id))
-        self.connection.commit()
+    def edit_user(self, user_id, column, new_value):
+        try:
+            query = f'UPDATE users SET "{column}" = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?'
+            self.cursor.execute(query, (new_value, user_id))
+            self.connection.commit()
+        except sqlite3.Error as e:
+            print(f"Error updating user: {e}")
+            raise
 
 
     def add_data_from_csv(self,path):
@@ -56,4 +59,8 @@ class UserEditor:
             writer.writerow(column_names)
             writer.writerows(data)
 
-
+    def getdata(self):
+        query = "SELECT * FROM users"
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+    

@@ -1,9 +1,16 @@
 import sqlite3
+import os
 
 def setup_database(db_path):
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    
+    # Connect to the database
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    create_books_table = """--sql
+
+    # SQL queries for table creation
+    create_books_table = """
     CREATE TABLE IF NOT EXISTS books (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         barcode TEXT NOT NULL UNIQUE,
@@ -23,8 +30,7 @@ def setup_database(db_path):
         status TEXT DEFAULT 'active'
     );
     """
-
-    create_users_table = """--sql
+    create_users_table = """
     CREATE TABLE IF NOT EXISTS users (
         user_id TEXT PRIMARY KEY NOT NULL,
         first_name TEXT NOT NULL,
@@ -43,10 +49,10 @@ def setup_database(db_path):
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """
-    create_loans_table = """--sql
+    create_loans_table = """
     CREATE TABLE IF NOT EXISTS loans (
         loan_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER NOT NULL,
+        user_id TEXT NOT NULL,
         book_id INTEGER NOT NULL,
         loan_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         due_date TIMESTAMP,
@@ -58,8 +64,26 @@ def setup_database(db_path):
         FOREIGN KEY (book_id) REFERENCES books(id)
     );
     """
-    cursor.execute(create_books_table)
-    cursor.execute(create_users_table)
-    cursor.execute(create_loans_table)
+    
+    # Execute table creation queries
+    try:
+        cursor.execute(create_books_table)
+        print("Books table created successfully or already exists.")
+    except sqlite3.Error as e:
+        print(f"Error creating books table: {e}")
+
+    try:
+        cursor.execute(create_users_table)
+        print("Users table created successfully or already exists.")
+    except sqlite3.Error as e:
+        print(f"Error creating users table: {e}")
+
+    try:
+        cursor.execute(create_loans_table)
+        print("Loans table created successfully or already exists.")
+    except sqlite3.Error as e:
+        print(f"Error creating loans table: {e}")
+
+    # Commit changes and close the connection
     conn.commit()
     conn.close()

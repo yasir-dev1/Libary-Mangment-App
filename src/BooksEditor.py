@@ -1,6 +1,6 @@
 from datetime import datetime
 import sqlite3
-import csv
+import csv,database_setup
 
 class BookEditor:
     def __init__(self,db) -> None:
@@ -42,4 +42,9 @@ class BookEditor:
             writer = csv.writer(file)
             writer.writerow(column_names)
             writer.writerows(data)
+
+    def getdata(self):
+        query = "SELECT * FROM books"
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
 
